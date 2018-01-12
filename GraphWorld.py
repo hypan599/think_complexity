@@ -184,7 +184,6 @@ class RandomLayout(Layout):
             others.append(v)
 
 
-
 def main(script, n='10', *args):
 
     # create n Vertices
