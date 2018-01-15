@@ -3,6 +3,7 @@
 
 # ch2 graph
 class Graph(dict):
+
     def __init__(self, vs=[], es=[]):
         """create a new graph.
         vs stands for a list of vertices
@@ -33,7 +34,9 @@ class Graph(dict):
             return None
 
     def remove_edge(self, e):
-        pass  # todo: remove edge
+        v, w = e
+        self[v].pop(w)
+        self[w].pop(v)
 
     def vertices(self):
         return self.keys()
@@ -44,7 +47,7 @@ class Graph(dict):
             for e in v.values():
                 if e not in _edges:
                     _edges.append(e)
-        return str(_edges)
+        return _edges
 
     def out_vertices(self, v):
         try:
@@ -87,9 +90,8 @@ class Graph(dict):
         raise ValueError("degree more that 1 not supported")
 
     def is_connected(self):
-        q = []
-        q.append(list(self.vertices())[0])
-        marked = dict(zip(self.vertices(), [0 for i in range(len(self.vertices()))]))
+        q = list(self.keys())[0]
+        marked = {i: 0 for i in self.keys()}
         while q:
             vv = q.pop()
             marked[vv] = 1
@@ -98,8 +100,7 @@ class Graph(dict):
                     q.append(v)
         if 0 in marked.values():
             return False
-        else:
-            return True
+        return True
 
 
 class Vertex(object):
@@ -112,6 +113,8 @@ class Vertex(object):
     __str__ = __repr__
 
 
+# todo: check this new method
+# since class edge is not used in any test script
 class Edge(tuple):
     def __new__(cls, e1, e2):
         return tuple.__new__(cls, (e1, e2))
