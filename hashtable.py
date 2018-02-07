@@ -51,8 +51,8 @@ class BetterMap:
 
     def iteritems(self):
         for linear_map in self.maps:
-            for k, v in linear_map:
-                yield k, v
+            for i in linear_map.items:
+                yield i[0], i[1]
 
 
 class HashMap:
@@ -65,7 +65,7 @@ class HashMap:
         return self.maps.get(k)
 
     def add(self, k, v):
-        if len(self.maps) == self.num:
+        if len(self.maps.maps) == self.num:
             self.resize()
         self.maps.add(k, v)
         self.num += 1

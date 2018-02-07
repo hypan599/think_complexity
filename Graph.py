@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import random
 
 # ch2 graph
 class Graph(dict):
@@ -69,7 +69,7 @@ class Graph(dict):
                 else:
                     self.add_edge((v1, v2))
 
-    def add_regular_edges(self, num):  # todo : regular edges and degrees
+    def add_regular_edges(self, num):  # todo : regular edges and degrees  先证明定理！
         if num == 1:
             if len(self.vertices()) % 2 == 1:
                 raise ValueError("unable to create regular graph")
@@ -101,6 +101,24 @@ class Graph(dict):
         if 0 in marked.values():
             return False
         return True
+
+    def add_random_edges(self, p):
+        def yes_or_no(p):
+            p = int(1000 * p)
+            rand_int = random.randint(1, 1000)
+            if rand_int <= p:
+                return True
+            else:
+                return False
+
+        if p >= 1:
+            raise ValueError("Error:possibility above 1")
+        vertices_list = list(self.vertices())
+        while vertices_list:
+            vertex = vertices_list.pop()
+            for v in vertices_list:
+                if yes_or_no(p):
+                    self.add_edge((vertex, v))
 
 
 class Vertex(object):

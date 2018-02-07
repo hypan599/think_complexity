@@ -12,12 +12,16 @@ class AllTrue:
         return self
 
 
-def alphabet_num_cycle():
-    i = 1
+def alphabet_num_cycle(n):
+    i = 0
+    total = 1
     while True:
-        for letter in "abcdefghijklmnopqrstuvwxyz".lower():
-            yield letter + str(i)
+        if total >= n:
+            break
         i += 1
+        for letter in "abcdefghijklmnopqrstuvwxyz".lower():
+            total += 1
+            yield letter + str(i)
 
 
 def main():
