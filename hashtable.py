@@ -78,6 +78,40 @@ class HashMap:
         self.maps = new_maps
 
 
+class TreeMapNode:
+
+    def __init__(self, key, value):
+        self.id = None
+        self.left_child = None
+        self.right_child = None
+        self.key = key
+        self.value = value
+        self.color = "Black"
+
+    def _paint(self, color):
+        if color not in ["red", "black"]:
+            raise ValueError("invalid color")
+        self.color = color
+
+
 # todo: use red black tree in map
 class TreeMap:
-    pass
+
+    def __init__(self):
+        self.root = None
+        self.num = 0
+
+    def _left_rotate(self, node):
+        pass
+
+    def _right_rotate(self, node):
+        pass
+
+    def add(self, k, v):
+        pass
+
+    def get(self, k):
+        pass
+
+    def remove(self, k):
+        pass
